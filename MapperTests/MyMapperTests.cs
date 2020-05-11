@@ -18,6 +18,43 @@ namespace MapperTests
             _myMapper = new MyMapper();
         }
 
+
+        [Test]
+        public void Map_TestWithGenericMethod()
+        {
+            // Arrange
+            var arrange = new EmptyObject()
+            {
+                Bool = true,
+                Decimal = 0.5,
+                Float = 0.7f,
+                Double = 4.3,
+                Int = 4,
+                String = "String",
+            };
+
+            var expected = new SecondObject()
+            {
+                Bool = true,
+                Decimal = 0.5,
+                Float = 0.7f,
+                Double = 4.3,
+                Int = 4,
+                String = "String"
+            };
+
+            // Act
+            var actual =_myMapper.Map<SecondObject>(arrange);
+
+            // Assert
+            Assert.AreEqual(expected.Int, actual.Int);
+            Assert.AreEqual(expected.Bool, actual.Bool);
+            Assert.AreEqual(expected.Decimal, actual.Decimal);
+            Assert.AreEqual(expected.Float, actual.Float);
+            Assert.AreEqual(expected.String, actual.String);
+
+        }
+
         [Test]
         public void Map_TestWithPrimitives()
         {

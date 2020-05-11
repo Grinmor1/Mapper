@@ -22,11 +22,10 @@ namespace Mapper
 
             var propertyInfos = sourceObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            var type = instance.GetType();
-
             foreach (var propertyInfo in propertyInfos)
             {
-                if (!TryGetProperty(type, propertyInfo.Name, out var targetPropertyInfo)) continue;
+                if (!TryGetProperty(destinationType, propertyInfo.Name, out var targetPropertyInfo))
+                    continue;
 
                 var value = TryMapProperty(propertyInfo.GetValue(sourceObject), targetPropertyInfo.PropertyType);
                 targetPropertyInfo.SetValue(instance, value);
@@ -51,7 +50,7 @@ namespace Mapper
                 var sourceOType = sourceObject.GetType();
 
                 //I don't know why decimal is not primitive type, so to filter struct i need to make like this 
-                if (destinationType.IsPrimitive || destinationType == typeof(string) || destinationType == typeof(decimal)) 
+                if (destinationType.IsPrimitive || destinationType == typeof(string) || destinationType == typeof(decimal))
                 {
                     obj = Convert.ChangeType(sourceObject, destinationType);
                 }
@@ -63,11 +62,12 @@ namespace Mapper
                         {
                             obj = Convert.ChangeType(sourceObject, destinationType);
                         }
-                        else 
+                        else
                         {
                             obj = MakeGenericObject(sourceObject, destinationType);
                         }
                     }
+                    //using recursion for nested types
                     else
                     {
                         obj = Map(sourceObject, destinationType);
@@ -86,8 +86,21 @@ namespace Mapper
 
         private static object MakeGenericObject(object sourceObject, Type destinationType)
         {
-            var concreteDestinationType = GetConcreteType(sourceObject, destinationType);
+            if (destinationType.IsArray)
+            {
+                var sourceCollection = (ICollection)sourceObject;
+                var array = Array.CreateInstance(
+                    destinationType.GetElementType() ?? throw new InvalidOperationException(), sourceCollection.Count);
+                var index = 0;
+                foreach (var value in sourceCollection)
+                {
+                    array.SetValue(value, index++);
+                }
 
+                return array;
+            }
+
+            var concreteDestinationType = GetConcreteType(sourceObject, destinationType);
             var instance = Activator.CreateInstance(concreteDestinationType, sourceObject);
 
             return instance;
@@ -106,7 +119,7 @@ namespace Mapper
             }
             else
             {
-                genericTypeDefinition =  destinationType.GetGenericTypeDefinition();
+                genericTypeDefinition = destinationType.GetGenericTypeDefinition();
             }
 
             return genericTypeDefinition.MakeGenericType(typeParameters);
