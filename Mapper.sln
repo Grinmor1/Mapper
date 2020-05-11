@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mapper", "src\Mapper.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapperTests", "MapperTests\MapperTests.csproj", "{57440EDB-F463-4B65-81D4-8BE87BBF7744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUp", "..\StartUp\StartUp.csproj", "{4DAF0F64-4B32-4DBE-AD9E-1034286F2E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StartUp", "StartUp\StartUp.csproj", "{5A37A202-2399-4EBF-9960-F3E0A294C0B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{57440EDB-F463-4B65-81D4-8BE87BBF7744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57440EDB-F463-4B65-81D4-8BE87BBF7744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57440EDB-F463-4B65-81D4-8BE87BBF7744}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DAF0F64-4B32-4DBE-AD9E-1034286F2E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DAF0F64-4B32-4DBE-AD9E-1034286F2E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DAF0F64-4B32-4DBE-AD9E-1034286F2E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DAF0F64-4B32-4DBE-AD9E-1034286F2E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A37A202-2399-4EBF-9960-F3E0A294C0B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A37A202-2399-4EBF-9960-F3E0A294C0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A37A202-2399-4EBF-9960-F3E0A294C0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A37A202-2399-4EBF-9960-F3E0A294C0B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
