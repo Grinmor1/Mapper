@@ -7,29 +7,37 @@ namespace Mapper
     public class FirstObject
     {
         public int Int { get; set; } = 10;
-        public string FirstString { get; set; } = "FirstString";
+        public string String { get; set; } = "String";
         public int Bool { get; set; } = 0;
         public double Double { get; set; } = 0.4;
-        public string SecondString { get; set; } = "5";
+        public string StringIntoInt { get; set; } = "5";
         public decimal Decimal { get; set; } = new decimal(0.3);
         public float Float { get; set; } = 0.3f;
+        public int IntIntoString { get; set; } = 3;
+        public decimal DecimalIntoInt { get; set; } = new decimal(1.3);
+        public double DoubleIntoDecimal { get; set; } = 2.3;
 
-        public float SecondFloat { get; set; } = 0.3f;
+        public int[] IntArray { get; set; } = new[] {4, 5, 3, 1, 5, 67, 6, 1};
 
-        public int[] IntArray { get; set; } = new[] { 4, 5, 3, 1, 5, 67, 6, 1 };
+        public NestedType NestedType { get; set; } = new NestedType() {Int = 4, String = "String"};
 
-        public NestedType NestedType { get; set; } = new NestedType() { Int = 4, String = "String" };
         public Struct Struct { get; set; } = new Struct()
         {
             Int = 4,
             String = "String"
         };
+
         public Struct Struct2 { get; set; } = new Struct()
         {
             Int = 4,
             String = "String"
         };
-        public string[] StringList { get; set; } = new string[]
+
+        public IList<int> ListIntoArray { get; set; }= new List<int>()
+        {
+            1,3,5,6
+        };
+        public string[] ArrayIntoList { get; set; } = new string[]
         {
             "string1",
             "string2",

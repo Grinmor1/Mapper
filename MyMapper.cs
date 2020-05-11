@@ -48,7 +48,10 @@ namespace Mapper
                     return null;
                 }
 
-                if (destinationType.IsPrimitive || destinationType == typeof(string))
+                var sourceOType = sourceObject.GetType();
+
+                //I don't know why decimal is not primitive type, so to filter struct i need to make like this 
+                if (destinationType.IsPrimitive || destinationType == typeof(string) || destinationType == typeof(decimal)) 
                 {
                     obj = Convert.ChangeType(sourceObject, destinationType);
                 }
@@ -56,11 +59,11 @@ namespace Mapper
                 {
                     if (destinationType.GetInterfaces().Contains(typeof(IEnumerable)))
                     {
-                        if (destinationType.IsArray)
+                        if (destinationType.IsArray && sourceOType.IsArray)
                         {
                             obj = Convert.ChangeType(sourceObject, destinationType);
                         }
-                        else if (destinationType.IsGenericType)
+                        else 
                         {
                             obj = MakeGenericObject(sourceObject, destinationType);
                         }
@@ -103,7 +106,7 @@ namespace Mapper
             }
             else
             {
-                genericTypeDefinition = destinationType.GetGenericTypeDefinition();
+                genericTypeDefinition =  destinationType.GetGenericTypeDefinition();
             }
 
             return genericTypeDefinition.MakeGenericType(typeParameters);
