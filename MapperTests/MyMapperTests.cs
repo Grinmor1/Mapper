@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using Mapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
@@ -23,7 +21,7 @@ namespace MapperTests
         public void Map_TestWithGenericMethod()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                 Bool = true,
                 Decimal = 0.5,
@@ -59,7 +57,7 @@ namespace MapperTests
         public void Map_TestWithPrimitives()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                 Bool = true,
                 Decimal = 0.5,
@@ -95,7 +93,7 @@ namespace MapperTests
         public void Map_TestWithNestedTypes()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                 NestedType = new NestedType()
                 {
@@ -141,7 +139,7 @@ namespace MapperTests
         public void Map_TestWithPrimitivesConverting()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                Struct2 =  new Struct()
                {
@@ -186,7 +184,7 @@ namespace MapperTests
         public void Map_TestWithCollections()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                 IntArray = new[] { 4, 3, 6, 2 },
                 EnumerableDoubles = new List<double>()
@@ -264,7 +262,7 @@ namespace MapperTests
         public void Map_TestWithConvertingCollections()
         {
             // Arrange
-            var arrange = new EmptyObject()
+            var arrange = new FirstObject()
             {
                 ArrayIntoList = new []
                 {
@@ -307,6 +305,7 @@ namespace MapperTests
             Assert.AreEqual(expected.ListIntoArray, actual.ListIntoArray);
 
         }
+
 
     }
 }

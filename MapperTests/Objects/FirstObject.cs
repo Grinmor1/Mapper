@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Mapper;
 
 namespace MapperTests
 {
-    public class EmptyObject
+    public class FirstObject
     {
         public int[] IntArray { get; set; }
         public int Int { get; set; }
